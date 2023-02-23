@@ -1,0 +1,2 @@
+#không đẩy thư mục node_modules lên git
+node_modules/

@@ -1,0 +1,60 @@
+// xóa file
+ fs.unlink(
+    __dirname + "/public/imgmain/" + "47842202337709173538233314.jpg",
+    (error) => {
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      console.log("File deleted successfully");
+    }
+  );
+  // thêm file
+  const base64Image = "data:image/png;base64,tenbass64";
+const binaryData = Buffer.from(
+  base64Image.replace(/^data:image\/\w+;base64,/, ""),
+  "base64"
+);
+
+
+//=====================================
+let ngay =
+  today.getDate() + "" + (today.getMonth() + 1) + "" + today.getFullYear();
+let time =
+  today.getHours() +
+  "" +
+  today.getMinutes() +
+  "" +
+  today.getSeconds() +
+  "" +
+  today.getMilliseconds();
+let truocngay = Math.floor(Math.random() * 100000);
+let truocsaungay = Math.floor(Math.random() * 100000);
+let truocsaugio = Math.floor(Math.random() * 100000);
+let tenanh =
+  truocngay +
+  "" +
+  ngay +
+  "" +
+  truocsaungay +
+  "" +
+  time +
+  "" +
+  truocsaugio +
+  ".jpg";
+//==========================
+
+fs.writeFileSync(
+  //quản lí đường dẫn
+
+  path.join(__dirname + "/public/imgmain", tenanh),
+  binaryData,
+  function (err) {
+    if (err) {
+      return console.log(err);
+    }
+
+    console.log("The file was saved!");
+  }
+);
