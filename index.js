@@ -29,6 +29,21 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/htm.html");
 });
 
+io.on("connection", (socket) => {
+  console.log("a user connected");
+
+  socket.on("stream", (stream) => {
+    console.log("kkk", stream);
+    //socket.broadcast.emit("stream", stream);
+    io.emit("stream", stream);
+  });
+
+  socket.on("disconnect", () => {
+    //console.log("user disconnected");
+    socket.broadcast.emit("callEnded");
+  });
+});
+
 //======================================
 // gọi biến roter từ modun ruter
 require("./app/router/user")(app, io);
